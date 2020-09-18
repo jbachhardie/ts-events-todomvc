@@ -11,6 +11,24 @@ export type Scalars = {
   Float: number;
 };
 
+export type Mutation = {
+  __typename?: 'Mutation';
+  register: RegisterOutput;
+  authenticate: Scalars['String'];
+};
+
+
+export type MutationRegisterArgs = {
+  username: Scalars['String'];
+  password: Scalars['String'];
+};
+
+
+export type MutationAuthenticateArgs = {
+  username: Scalars['String'];
+  password: Scalars['String'];
+};
+
 export type Query = {
   __typename?: 'Query';
   hello: Scalars['String'];
@@ -19,6 +37,16 @@ export type Query = {
 
 export type QueryHelloArgs = {
   name?: Maybe<Scalars['String']>;
+};
+
+export type RegisterOutput = {
+  __typename?: 'RegisterOutput';
+  newUser: User;
+};
+
+export type User = {
+  __typename?: 'User';
+  username: Scalars['String'];
 };
 
 
@@ -101,6 +129,9 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 export type ResolversTypes = {
   Query: ResolverTypeWrapper<{}>;
   String: ResolverTypeWrapper<Scalars['String']>;
+  Mutation: ResolverTypeWrapper<{}>;
+  RegisterOutput: ResolverTypeWrapper<RegisterOutput>;
+  User: ResolverTypeWrapper<User>;
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
 };
 
@@ -108,15 +139,36 @@ export type ResolversTypes = {
 export type ResolversParentTypes = {
   Query: {};
   String: Scalars['String'];
+  Mutation: {};
+  RegisterOutput: RegisterOutput;
+  User: User;
   Boolean: Scalars['Boolean'];
+};
+
+export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
+  register?: Resolver<ResolversTypes['RegisterOutput'], ParentType, ContextType, RequireFields<MutationRegisterArgs, 'username' | 'password'>>;
+  authenticate?: Resolver<ResolversTypes['String'], ParentType, ContextType, RequireFields<MutationAuthenticateArgs, 'username' | 'password'>>;
 };
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
   hello?: Resolver<ResolversTypes['String'], ParentType, ContextType, RequireFields<QueryHelloArgs, never>>;
 };
 
+export type RegisterOutputResolvers<ContextType = any, ParentType extends ResolversParentTypes['RegisterOutput'] = ResolversParentTypes['RegisterOutput']> = {
+  newUser?: Resolver<ResolversTypes['User'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType>;
+};
+
+export type UserResolvers<ContextType = any, ParentType extends ResolversParentTypes['User'] = ResolversParentTypes['User']> = {
+  username?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType>;
+};
+
 export type Resolvers<ContextType = any> = {
+  Mutation?: MutationResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
+  RegisterOutput?: RegisterOutputResolvers<ContextType>;
+  User?: UserResolvers<ContextType>;
 };
 
 
