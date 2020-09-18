@@ -1,4 +1,4 @@
-import { Resolvers } from "../generated/graphql";
+import { Resolvers } from "./codegen-types";
 import { GraphQLContext } from "./context";
 
 export const resolvers: Resolvers<GraphQLContext> = {

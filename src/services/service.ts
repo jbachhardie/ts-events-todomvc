@@ -1,4 +1,4 @@
-import { User } from "../generated/graphql";
+import { User } from "../graphql/codegen-types";
 
 export type EventPayloads = {
   "user:requestToRegisterReceived": {
