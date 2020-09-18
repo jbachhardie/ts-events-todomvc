@@ -1,10 +1,6 @@
 import { EventEmitter } from "events";
-import {
-  Dispatcher,
-  EventPayloads,
-  Service,
-  ServiceContext,
-} from "../services/service";
+import { Dispatcher, Service, ServiceContext } from "../services/service";
+import { EventPayloads } from "../services/events";
 import { UserService } from "../services/user";
 
 const SERVICE_LIST: Service[] = [UserService];

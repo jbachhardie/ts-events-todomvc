@@ -1,22 +1,4 @@
-import { User } from "../graphql/codegen-types";
-
-export type EventPayloads = {
-  "user:requestToRegisterReceived": {
-    username: string;
-    password: string;
-  };
-  "user:created": {
-    newUser: User;
-  };
-  "user:requestToAuthoriseReceived": {
-    username: string;
-    password: string;
-  };
-  "user:authorised": {
-    authToken: string;
-  };
-  error: Error;
-};
+import { EventPayloads } from "./events";
 
 export type Dispatcher = <TEventName extends keyof EventPayloads>(
   eventName: TEventName,
